@@ -1,0 +1,37 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>net7.0</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+	</PropertyGroup>
+
+	<ItemGroup Label="PackageReferences">
+		<PackageReference Include="Scriban" Version="5.9.0" />
+	</ItemGroup>
+
+	<ItemGroup Label="ProjectReferences">
+		<ProjectReference Include="..\MessageFlow.Core\MessageFlow.Core.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<EmbeddedResource Update="MessageTemplatesResources.resx">
+			<Generator>ResXFileCodeGenerator</Generator>
+			<LastGenOutput>MessageTemplatesResources.Designer.cs</LastGenOutput>
+		</EmbeddedResource>
+		<Compile Update="MessageTemplatesResources.Designer.cs">
+			<DesignTime>True</DesignTime>
+			<AutoGen>True</AutoGen>
+			<DependentUpon>MessageTemplatesResources.resx</DependentUpon>
+		</Compile>
+	</ItemGroup>
+	
+	<ItemGroup>
+		<EmbeddedResource Include="Resources\MessageTemplates\Herinneringsbrief.Inkomen.txt" />
+		<EmbeddedResource Include="Resources\MessageTemplates\Vraagbrief.Inkomen.txt" />
+		<None Remove="Resources\Herinneringsbrief.Inkomen.txt" />
+		<None Remove="Resources\Vraagbrief.Inkomen.txt" />
+	</ItemGroup>
+
+
+</Project>
