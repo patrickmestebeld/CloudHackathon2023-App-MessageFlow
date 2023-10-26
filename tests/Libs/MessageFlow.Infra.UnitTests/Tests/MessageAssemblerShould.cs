@@ -18,7 +18,7 @@ public class MessageAssemblerShould
     }
 
     [TestMethod]
-    public void AssembleWhenCorrectVraagbriefTriggerIsGiven()
+    public async Task AssembleWhenCorrectVraagbriefTriggerIsGiven()
     {
         var messageTrigger = new MessageTrigger()
         {
@@ -30,7 +30,7 @@ public class MessageAssemblerShould
             BerichtType = "Vraagbrief_Inkomen"
         };
 
-        var actualMessage = _sut.Assemble(messageTrigger);
+        var actualMessage = await _sut.AssembleAsync(messageTrigger);
 
         actualMessage.Recipient.ShouldBe("H. de Vries");
         actualMessage.Subject.ShouldBe("We hebben uw inkomen nodig voor uw toeslag");
@@ -38,7 +38,7 @@ public class MessageAssemblerShould
     }
 
     [TestMethod]
-    public void AssembleWhenCorrectHerinneringsbriefTriggerIsGiven()
+    public async Task AssembleWhenCorrectHerinneringsbriefTriggerIsGiven()
     {
         var messageTrigger = new MessageTrigger()
         {
@@ -51,7 +51,7 @@ public class MessageAssemblerShould
             BerichtType = "Herinneringsbrief_Inkomen"
         };
 
-        var actualMessage = _sut.Assemble(messageTrigger);
+        var actualMessage = await _sut.AssembleAsync(messageTrigger);
 
         actualMessage.Recipient.ShouldBe("H. de Vries");
         actualMessage.Subject.ShouldBe("We denken dat u kindgebonden budget kunt krijgen");

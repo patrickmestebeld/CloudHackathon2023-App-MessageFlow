@@ -1,0 +1,142 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "MessageOracle.Api",
+    "version": "1.0"
+  },
+  "paths": {
+    "/": {
+      "get": {
+        "tags": [
+          "Index"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/personal": {
+      "get": {
+        "tags": [
+          "Personal"
+        ],
+        "parameters": [
+          {
+            "name": "key",
+            "in": "query",
+            "style": "form",
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/PersonalDataDto"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PersonalDataDto"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PersonalDataDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "AdresDto": {
+        "type": "object",
+        "properties": {
+          "straatnaam": {
+            "type": "string",
+            "nullable": true
+          },
+          "huisnummer": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "postcode": {
+            "type": "string",
+            "nullable": true
+          },
+          "woonplaats": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "NaamDto": {
+        "type": "object",
+        "properties": {
+          "voorletters": {
+            "type": "string",
+            "nullable": true
+          },
+          "achternaam": {
+            "type": "string",
+            "nullable": true
+          },
+          "voornaam": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "PersonalDataDto": {
+        "type": "object",
+        "properties": {
+          "key": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "bsn": {
+            "type": "string",
+            "nullable": true
+          },
+          "adres": {
+            "$ref": "#/components/schemas/AdresDto"
+          },
+          "naam": {
+            "$ref": "#/components/schemas/NaamDto"
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  }
+}

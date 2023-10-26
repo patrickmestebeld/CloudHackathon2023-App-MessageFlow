@@ -17,9 +17,9 @@ namespace MessageFlow.Core.Messaging.Services
             _messageRenderer = messageRenderer;
         }
 
-        public Message Assemble(MessageTrigger messsageTrigger)
+        public async Task<Message> AssembleAsync(MessageTrigger messsageTrigger)
         {
-            var persoonsGegevens = _persoonsgegevensFetcher.GetPersoonsGegevens(messsageTrigger.AanvragerKey);
+            var persoonsGegevens = await _persoonsgegevensFetcher.FetchPersonalDataAsync(messsageTrigger.AanvragerKey);
             var renderableMessage = _renderableMessageFactory.CreateFromTriggerAndPerson(messsageTrigger, persoonsGegevens);
             return _messageRenderer.Render(renderableMessage);
         }

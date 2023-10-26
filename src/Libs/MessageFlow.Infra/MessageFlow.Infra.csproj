@@ -10,10 +10,19 @@
 		<PackageReference Include="Azure.Identity" Version="1.10.3" />
 		<PackageReference Include="Azure.Messaging.ServiceBus" Version="7.16.2" />
 		<PackageReference Include="Azure.Security.KeyVault.Secrets" Version="4.5.0" />
+		<PackageReference Include="Microsoft.Extensions.ApiDescription.Client" Version="7.0.2">
+		  <PrivateAssets>all</PrivateAssets>
+		  <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+		</PackageReference>
 		<PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="7.0.0" />
 		<PackageReference Include="Microsoft.Extensions.Options" Version="7.0.1" />
 		<PackageReference Include="Microsoft.Extensions.Options.ConfigurationExtensions" Version="7.0.0" />
 		<PackageReference Include="Microsoft.Extensions.Options.DataAnnotations" Version="7.0.0" />
+		<PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+		<PackageReference Include="NSwag.ApiDescription.Client" Version="13.18.2">
+		  <PrivateAssets>all</PrivateAssets>
+		  <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+		</PackageReference>
 		<PackageReference Include="Scriban" Version="5.9.0" />
 	</ItemGroup>
 
@@ -38,6 +47,12 @@
 		<EmbeddedResource Include="Resources\MessageTemplates\Vraagbrief.Inkomen.txt" />
 		<None Remove="Resources\Herinneringsbrief.Inkomen.txt" />
 		<None Remove="Resources\Vraagbrief.Inkomen.txt" />
+	</ItemGroup>
+	
+	<ItemGroup>
+	  <OpenApiReference Include="OpenAPIs\swagger.json" CodeGenerator="NSwagCSharp" Namespace="MessageOracle" ClassName="MessageOracleClient">
+	    <SourceUri>https://messageoracle.azurewebsites.net/swagger/v1/swagger.json</SourceUri>
+	  </OpenApiReference>
 	</ItemGroup>
 
 

@@ -13,6 +13,9 @@ namespace MessageFlow.Infra
             services.AddOptions<MessagingServiceBusOptions>()
                 .Bind(config.GetSection(MessagingServiceBusOptions.Name))
                 .ValidateDataAnnotations();
+            services.AddOptions<PersonalDataFetcherOptions>()
+                .Bind(config.GetSection(PersonalDataFetcherOptions.Name))
+                .ValidateDataAnnotations();
             services.AddTransient<IMessageRenderer, ScribanMessageRenderer>();
             services.AddTransient<IMessageEventWatcher, MessageEventWatcher>();
             services.AddTransient<IPersonalDataFetcher, PersonalDataFetcher>();

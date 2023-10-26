@@ -3,14 +3,15 @@
 namespace MessageFlow.Core.Messaging.Entities
 {
     public class PersonalData
-    {
-        public string Key => Bsn.ToString(); // Do something with pseudonymization here later
+    { 
+        public Guid Key { get; private set; } 
         public Bsn Bsn { get; private set; }
         public Adres Adres { get; private set; }
         public Naam Naam { get; private set; }
 
-        public PersonalData(Bsn bsn, Naam naam, Adres adres)
+        public PersonalData(Guid key, Bsn bsn, Naam naam, Adres adres)
         {
+            Key = key;
             Bsn = bsn ?? throw new ArgumentNullException(nameof(bsn));
             Naam = naam ?? throw new ArgumentNullException(nameof(naam));
             Adres = adres ?? throw new ArgumentNullException(nameof(adres));
