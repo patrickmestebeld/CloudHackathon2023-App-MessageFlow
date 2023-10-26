@@ -21,5 +21,16 @@ public class MessageTriggerController : ControllerBase
     // Todo: make use of DTO with validations later on.
     [HttpPost]
     public ActionResult<Message> Post(MessageTrigger trigger)
-        => Ok(_messageAssembler.Assemble(trigger));
+    {
+        try
+        {
+            return Ok(_messageAssembler.Assemble(trigger));
+        }
+        catch (Exception e)
+        {
+            _logger.LogError("Error while exposing connection string", e);
+            // return internal server error
+            return StatusCode(500);
+        }
+    }
 }

@@ -11,9 +11,9 @@ public class MessageEventWatcher : IMessageEventWatcher
 {
     private readonly MessagingServiceBusOptions _serviceBusOptions;
 
-    public MessageEventWatcher(IOptions<MessagingServiceBusOptions> _serviceBusOptions)
+    public MessageEventWatcher(IOptions<MessagingServiceBusOptions> serviceBusOptions)
     {
-        this._serviceBusOptions = _serviceBusOptions.Value;
+        _serviceBusOptions = serviceBusOptions.Value;
     }
 
     public string ExposeConnectionString()

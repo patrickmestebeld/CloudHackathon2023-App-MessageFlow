@@ -18,5 +18,16 @@ public class MessagingEventController : ControllerBase
 
     [HttpGet]
     public ActionResult<string> Expose()
-        => Ok(_messageEventWatcher.ExposeConnectionString());
+    {
+        try
+        {
+            return Ok(_messageEventWatcher.ExposeConnectionString());
+        }
+        catch (Exception e)
+        {
+            _logger.LogError("Error while exposing connection string", e);
+            // return internal server error
+            return StatusCode(500);
+        }
+    }
 }
