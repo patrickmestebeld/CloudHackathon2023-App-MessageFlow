@@ -4,7 +4,7 @@ public class MessagingServiceBusOptions
 {
     public const string Name = "MessagingServiceBus";
 
-    public string ConnectionStringVaultLocation { get; set; } = default!;
+    public string ConnectionStringVaultUri { get; set; } = default!;
     public string ConnectionStringSecretName { get; set; } = default!;
     public string QueueName { get; set; } = default!;
 }

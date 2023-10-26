@@ -28,7 +28,7 @@ public class MessageEventWatcher : IMessageEventWatcher
                     Mode = RetryMode.Exponential
                  }
         };
-        var client = new SecretClient(new Uri(_serviceBusOptions.ConnectionStringVaultLocation), new DefaultAzureCredential(), options);
+        var client = new SecretClient(new Uri(_serviceBusOptions.ConnectionStringVaultUri), new DefaultAzureCredential(), options);
 
         KeyVaultSecret secret = client.GetSecret(_serviceBusOptions.ConnectionStringSecretName);
 
