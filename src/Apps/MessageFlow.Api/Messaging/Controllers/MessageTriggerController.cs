@@ -26,8 +26,9 @@ public class MessageTriggerController : ControllerBase
         {
             return Ok(await _messageAssembler.AssembleAsync(trigger));
         }
-        catch (Exception)
+        catch (Exception e)
         {
+            _logger.LogError(e, "Error while assembling message.");
             return StatusCode(500);
         }
     }
