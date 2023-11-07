@@ -31,9 +31,12 @@ namespace MessageFlow.QueueJobs
             });
             builder.ConfigureServices((context, s) =>
             {
-                string clientBaseUrl = context.Configuration["PersonalDataFetcher_ClientBaseUrl"]!;
                 s.AddCoreModule();
-                s.AddInfraWebJobsModule(o => o.ClientBaseUrl = clientBaseUrl);
+                s.AddInfraWebJobsModule(o =>
+                {
+                    o.ClientBaseUrl = context.Configuration["PersonalDataFetcher_ClientBaseUrl"]!;
+                    o.ClientSubscriptionKey = context.Configuration["PersonalDataFetcher_ClientSubscriptionKey"]!;
+                });
                 s.AddScoped<Functions>();
             });
             var host = builder.Build();

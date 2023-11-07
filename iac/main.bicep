@@ -3,13 +3,21 @@ param location string = resourceGroup().location
 param msEntraUserObjectId string 
 param existingMessageOracleApiName string = 'messageoracle'
 param existingMessagingServiceBusName string  = 'messaging-servicebus'
-var storageAccountName = 'msgflwstg${uniqueString(resourceGroup().name, 'msgflw')}'
+
+module kvMessagingFlow './Modules/keyvault.bicep' = {
+  name: 'kvMessagingFlow'
+  params: {
+    location: location
+    keyVaultName: 'msgflwkv${uniqueString(resourceGroup().name, 'msgflw')}'
+    objectId: msEntraUserObjectId
+  }
+}
 
 module stMessageFlow './Modules/blobStorage.bicep' = {
   name: 'messagingBlobStorage'
   params: {
     location: location
-    name: storageAccountName
+    name: 'msgflwstg${uniqueString(resourceGroup().name, 'msgflw')}'
     containerName: 'messages'
     roleId: 'b7e6dc6d-f1e8-4753-8033-0f276bb0955b'
     msEntraUserObjectId: msEntraUserObjectId
@@ -29,6 +37,15 @@ module appMessageFlow './Modules/webJob.bicep' = {
   }
 }
 
+module messageFlowApiKvAccess './Modules/keyVaultAccessPolicies.bicep' = {
+  name: 'messageFlowApiKvAccess'
+  dependsOn: [ kvMessagingFlow, appMessageFlow ]
+  params: {
+    keyVaultName: kvMessagingFlow.outputs.keyVaultName
+    objectId: appMessageFlow.outputs.appServiceManagedIdentityId
+  }
+}
+
 resource existingServiceBusNamespace 'Microsoft.ServiceBus/namespaces@2022-10-01-preview' existing = {
   name: existingMessagingServiceBusName
 }
@@ -45,7 +62,7 @@ resource sbRoleAssignment 'Microsoft.Authorization/roleAssignments@2020-04-01-pr
 }
 
 resource existingStMessageFlow 'Microsoft.Storage/storageAccounts@2022-09-01' existing = {
-  name: storageAccountName
+  name: stMessageFlow.name
 }
 
 var stRoleId = 'b7e6dc6d-f1e8-4753-8033-0f276bb0955b' // Storage Blob Data Owner

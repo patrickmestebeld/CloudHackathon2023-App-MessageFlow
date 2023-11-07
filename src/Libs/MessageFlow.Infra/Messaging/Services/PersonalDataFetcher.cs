@@ -17,7 +17,7 @@ namespace MessageFlow.Infra.Messaging.Services
         }
 
         public Task<PersonalData> FetchPersonalDataAsync(Guid burgerKey)
-            => new MessageOracleClient(_options.ClientBaseUrl, new HttpClient()).PersonalAsync(burgerKey)
+            => new MessageOracleClient(_options.ClientBaseUrl, _options.ClientSubscriptionKey, new HttpClient()).PersonalAsync(burgerKey)
                 .ContinueWith(t => t.Result.ToPersonalData());
     }
 }

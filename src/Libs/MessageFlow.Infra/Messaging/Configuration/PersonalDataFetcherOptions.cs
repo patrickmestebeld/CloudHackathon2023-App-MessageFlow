@@ -5,5 +5,6 @@
         public const string Name = "PersonalDataFetcher";
 
         public string ClientBaseUrl { get; set; } = "http://localhost:5000";
+        public string ClientSubscriptionKey { get; set; } = "secret";
     }
 }
