@@ -1,6 +1,6 @@
 ﻿namespace MessageFlow.Api.Models
 {
-    public class MessageTrigger
+    public class MessageContext
     {
         public Guid AanvragerKey { get; set; }
         public bool KgbVariant { get; set; } = false;

@@ -43,8 +43,12 @@
 	</ItemGroup>
 	
 	<ItemGroup>
-		<EmbeddedResource Include="Resources\MessageTemplates\Herinneringsbrief.Inkomen.txt" />
-		<EmbeddedResource Include="Resources\MessageTemplates\Vraagbrief.Inkomen.txt" />
+		<EmbeddedResource Include="Resources\MessageTemplates\Herinneringsbrief.Inkomen.txt">
+		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</EmbeddedResource>
+		<EmbeddedResource Include="Resources\MessageTemplates\Vraagbrief.Inkomen.txt">
+		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</EmbeddedResource>
 		<None Remove="Resources\Herinneringsbrief.Inkomen.txt" />
 		<None Remove="Resources\Vraagbrief.Inkomen.txt" />
 	</ItemGroup>

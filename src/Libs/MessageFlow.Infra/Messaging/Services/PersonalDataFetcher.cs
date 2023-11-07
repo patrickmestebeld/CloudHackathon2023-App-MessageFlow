@@ -7,7 +7,7 @@ using Microsoft.Extensions.Options;
 
 namespace MessageFlow.Infra.Messaging.Services
 {
-    internal class PersonalDataFetcher : IPersonalDataFetcher
+    public class PersonalDataFetcher : IPersonalDataFetcher
     {
         private readonly PersonalDataFetcherOptions _options;
 

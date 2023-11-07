@@ -20,7 +20,7 @@ public class MessageTriggerController : ControllerBase
 
     // Todo: make use of DTO with validations later on.
     [HttpPost]
-    public async Task<ActionResult<Message>> PostAsync(MessageTrigger trigger)
+    public async Task<ActionResult<Message>> PostAsync(MessageContext trigger)
     {
         try
         {

@@ -1,15 +1,15 @@
-Belastingdienst/Toeslagen
-Kantoor Utrecht
-Postbus 1234, 4590AA UTRECHT
-	
-H. de Vries
-Kerkstraat 1
-1234AB AMSTERDAM
+Belastingdienst/Toeslagen  
+Kantoor Utrecht  
+Postbus 1234, 4590AA UTRECHT  
 
-Datum: 19 oktober 2023
+H. de Vries  
+Kerkstraat 1  
+1234AB AMSTERDAM  
 
-Uw BSN: 123456782
-Kenmerk: TL041
+Datum: 19 oktober 2023  
+
+Uw BSN: 123456782  
+Kenmerk: TL041  
 
 
 ### HERINNERING

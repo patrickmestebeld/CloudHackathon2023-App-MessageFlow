@@ -1,0 +1,45 @@
+trigger:
+- master
+
+pool:
+  vmImage: 'windows-latest'
+
+steps:
+- task: DotNetCoreCLI@2
+  inputs:
+    command: 'build'
+    projects: '**/*.csproj'
+    arguments: '--configuration Release'
+
+- task: DotNetCoreCLI@2
+  inputs:
+    command: 'publish'
+    publishWebProjects: false
+    projects: '**/MessageFlow.Processor.csproj'
+    arguments: '--output $(Build.BinariesDirectory)/publish_output/App_Data/jobs/continuous/MessageFlowJob'
+    zipAfterPublish: false
+    modifyOutputPath: false
+
+- task: DotNetCoreCLI@2
+  inputs:
+    command: 'publish'
+    publishWebProjects: true
+    arguments: '--output $(Build.BinariesDirectory)/publish_output'
+    zipAfterPublish: false
+    modifyOutputPath: false
+
+- task: ArchiveFiles@2
+  inputs:
+    rootFolderOrFile: '$(Build.BinariesDirectory)/publish_output'
+    includeRootFolder: false
+    archiveType: 'zip'
+    archiveFile: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
+    replaceExistingArchive: true
+
+- task: PublishBuildArtifacts@1
+  inputs:
+    PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+    ArtifactName: 'drop'
+    publishLocation: 'Container'
+
+

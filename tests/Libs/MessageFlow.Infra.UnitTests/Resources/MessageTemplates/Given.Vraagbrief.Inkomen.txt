@@ -1,15 +1,15 @@
-Belastingdienst/Toeslagen
-Kantoor Utrecht
-Postbus 1234, 4590AA UTRECHT
-	
-{{ aanvrager.naam.voorletters }} {{ aanvrager.naam.achternaam }}
-{{ aanvrager.adres.straatnaam }} {{ aanvrager.adres.huisnummer }}
-{{ aanvrager.adres.postcode }} {{ aanvrager.adres.woonplaats }}
+Belastingdienst/Toeslagen  
+Kantoor Utrecht  
+Postbus 1234, 4590AA UTRECHT  
 
-Datum: {{ datum_dagtekening }}
+{{ aanvrager.naam.voorletters }} {{ aanvrager.naam.achternaam }}  
+{{ aanvrager.adres.straatnaam }} {{ aanvrager.adres.huisnummer }}  
+{{ aanvrager.adres.postcode }} {{ aanvrager.adres.woonplaats }}  
 
-Uw BSN: {{ aanvrager.bsn }}
-Kenmerk: TL031
+Datum: {{ datum_dagtekening }}  
+
+Uw BSN: {{ aanvrager.bsn }}  
+Kenmerk: TL031  
 
 
 {% if kgb_variant -%}

@@ -20,7 +20,7 @@ public class MessageAssemblerShould
     [TestMethod]
     public async Task AssembleWhenCorrectVraagbriefTriggerIsGiven()
     {
-        var messageTrigger = new MessageTrigger()
+        var messageTrigger = new MessageContext()
         {
             AanvragerKey = Guid.NewGuid(),
             KgbVariant = false,
@@ -40,7 +40,7 @@ public class MessageAssemblerShould
     [TestMethod]
     public async Task AssembleWhenCorrectHerinneringsbriefTriggerIsGiven()
     {
-        var messageTrigger = new MessageTrigger()
+        var messageTrigger = new MessageContext()
         {
             AanvragerKey = Guid.NewGuid(),
             KgbVariant = true,

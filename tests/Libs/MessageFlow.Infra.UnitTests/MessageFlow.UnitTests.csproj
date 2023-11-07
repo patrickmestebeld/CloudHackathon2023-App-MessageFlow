@@ -15,8 +15,12 @@
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Include="Resources\MessageTemplates\Given.Herinneringsbrief.Inkomen.txt" />
-    <EmbeddedResource Include="Resources\MessageTemplates\Given.Vraagbrief.Inkomen.txt" />
+    <EmbeddedResource Include="Resources\MessageTemplates\Given.Herinneringsbrief.Inkomen.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\MessageTemplates\Given.Vraagbrief.Inkomen.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
   </ItemGroup>
 
   <ItemGroup>
@@ -46,6 +50,15 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>TestMessageTemplatesResources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Resources\MessageTemplates\Expected.Herinneringsbrief.Inkomen.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Resources\MessageTemplates\Expected.Vraagbrief.Inkomen.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
 </Project>

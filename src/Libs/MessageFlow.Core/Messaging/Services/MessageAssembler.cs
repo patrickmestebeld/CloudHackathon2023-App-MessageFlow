@@ -8,19 +8,19 @@ namespace MessageFlow.Core.Messaging.Services
     public class MessageAssembler : IMessageAssembler
     {
         private readonly RenderableMessageFactory _renderableMessageFactory = new();
-        private readonly IPersonalDataFetcher _persoonsgegevensFetcher;
+        private readonly IPersonalDataFetcher _personalDataFetcher;
         private readonly IMessageRenderer _messageRenderer;
 
-        public MessageAssembler(IPersonalDataFetcher persoonsgegevensFetcher, IMessageRenderer messageRenderer)
+        public MessageAssembler(IPersonalDataFetcher personalDataFetcher, IMessageRenderer messageRenderer)
         {
-            _persoonsgegevensFetcher = persoonsgegevensFetcher;
+            _personalDataFetcher = personalDataFetcher;
             _messageRenderer = messageRenderer;
         }
 
-        public async Task<Message> AssembleAsync(MessageTrigger messsageTrigger)
+        public async Task<Message> AssembleAsync(MessageContext messsageTrigger)
         {
-            var persoonsGegevens = await _persoonsgegevensFetcher.FetchPersonalDataAsync(messsageTrigger.AanvragerKey);
-            var renderableMessage = _renderableMessageFactory.CreateFromTriggerAndPerson(messsageTrigger, persoonsGegevens);
+            var personalData = await _personalDataFetcher.FetchPersonalDataAsync(messsageTrigger.AanvragerKey);
+            var renderableMessage = _renderableMessageFactory.CreateFromTriggerAndPerson(messsageTrigger, personalData);
             return _messageRenderer.Render(renderableMessage);
         }
     }

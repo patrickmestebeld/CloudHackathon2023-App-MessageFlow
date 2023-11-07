@@ -5,6 +5,6 @@ namespace MessageFlow.Core.Messaging.Interfaces
 {
     public interface IMessageAssembler
     {
-        Task<Message> AssembleAsync(MessageTrigger messsageTrigger);
+        Task<Message> AssembleAsync(MessageContext messsageTrigger);
     }
 }

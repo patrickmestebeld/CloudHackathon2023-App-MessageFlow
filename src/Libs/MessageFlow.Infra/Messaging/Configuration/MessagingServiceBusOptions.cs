@@ -6,5 +6,6 @@ public class MessagingServiceBusOptions
 
     public string ConnectionStringVaultUri { get; set; } = default!;
     public string ConnectionStringSecretName { get; set; } = default!;
-    public string QueueName { get; set; } = default!;
+    public string Namespace { get; set; } = default!;
+    public string Queue { get; set; } = default!;
 }

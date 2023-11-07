@@ -403,3 +403,4 @@ FodyWeavers.xsd
 
 #exclude environment variables file
 .env
+/src/Apps/MessageFlow.Processor/local.settings.json

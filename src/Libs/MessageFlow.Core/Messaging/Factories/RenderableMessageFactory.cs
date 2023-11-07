@@ -6,7 +6,7 @@ namespace MessageFlow.Api.Factories
 {
     public class RenderableMessageFactory
     {
-        public RenderableMessage CreateFromTriggerAndPerson(MessageTrigger trigger, PersonalData persoonsGegevens)
+        public RenderableMessage CreateFromTriggerAndPerson(MessageContext trigger, PersonalData persoonsGegevens)
         {
             var messageData = new MessageData()
             {
