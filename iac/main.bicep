@@ -13,11 +13,12 @@ module kvMessagingFlow './Modules/keyvault.bicep' = {
   }
 }
 
+var stMessageFlowName = 'msgflwstg${uniqueString(resourceGroup().name, 'msgflw')}'
 module stMessageFlow './Modules/blobStorage.bicep' = {
   name: 'messagingBlobStorage'
   params: {
     location: location
-    name: 'msgflwstg${uniqueString(resourceGroup().name, 'msgflw')}'
+    name: stMessageFlowName
     containerName: 'messages'
     roleId: 'b7e6dc6d-f1e8-4753-8033-0f276bb0955b'
     msEntraUserObjectId: msEntraUserObjectId
@@ -32,12 +33,13 @@ module appMessageFlow './Modules/webJob.bicep' = {
     appSettings: {
       ServiceBusConnection__fullyQualifiedNamespace: '${existingMessagingServiceBusName}.servicebus.windows.net'
       BlobConnection__serviceUri: stMessageFlow.outputs.storageEndpointBlob
-      PersonalDataFetcher_ClientBaseUrl: 'https://${existingMessageOracleApiName}.azurewebsites.net'
+      PersonalDataFetcher_ClientBaseUrl: 'https://cloudhackathon2023-apim.azure-api.net/messageoracle'
+      PersonalDataFetcher_ClientSubscriptionKey: '@Microsoft.KeyVault(VaultName=msgflwkvrlzcnmr42xchy;Secret=OcpApimSubscriptionKey)'
     }
   }
 }
 
-module messageFlowApiKvAccess './Modules/keyVaultAccessPolicies.bicep' = {
+module kvMessagingFlowAccess './Modules/keyVaultAccessPolicies.bicep' = {
   name: 'messageFlowApiKvAccess'
   dependsOn: [ kvMessagingFlow, appMessageFlow ]
   params: {
@@ -62,7 +64,7 @@ resource sbRoleAssignment 'Microsoft.Authorization/roleAssignments@2020-04-01-pr
 }
 
 resource existingStMessageFlow 'Microsoft.Storage/storageAccounts@2022-09-01' existing = {
-  name: stMessageFlow.name
+  name: stMessageFlowName
 }
 
 var stRoleId = 'b7e6dc6d-f1e8-4753-8033-0f276bb0955b' // Storage Blob Data Owner

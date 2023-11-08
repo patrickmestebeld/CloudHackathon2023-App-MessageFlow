@@ -8,6 +8,7 @@ param containerName string
 ])
 param roleId string
 param msEntraUserObjectId string
+param appServiceManagedIdentityId string = ''
 
 resource storageAccount 'Microsoft.Storage/storageAccounts@2022-09-01' = {
   name: name
