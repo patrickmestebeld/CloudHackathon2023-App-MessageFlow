@@ -1,0 +1,36 @@
+Belastingdienst/Toeslagen
+Kantoor Utrecht
+Postbus 1234, 4590AA UTRECHT
+	
+{{ aanvrager.naam.voorletters }} {{ aanvrager.naam.achternaam }}  
+{{ aanvrager.adres.straatnaam }} {{ aanvrager.adres.huisnummer }}  
+{{ aanvrager.adres.postcode }} {{ aanvrager.adres.woonplaats }}  
+
+Datum: {{ datum_dagtekening | date.to_string '%e %B %Y' 'nl-NL' }}  
+
+Uw BSN: {{ aanvrager.bsn }}  
+Kenmerk: TL153
+
+
+### Beschikking
+{% if kgb_variant == true -%}
+Onderwerp: U krijgt kindgebonden budget
+{%- else -%}
+Onderwerp: Uw toeslag is toegekend
+{%- endif %}
+
+Beste {{ aanvrager.naam.voorletters }} {{ aanvrager.naam.achternaam }},
+
+### Waarom krijgt u deze brief?
+Op basis van de van u ontvangen gegevens op {{ datum_vraagbrief | date.to_string '%e %B %Y' 'nl-NL' }} en {{ datum_rappelbrief | date.to_string '%e %B %Y' 'nl-NL' }} is besloten uw aanvraag goed te keuren.
+
+### Besluit
+{% if kgb_variant -%}
+U ontvangt over {{ toeslagjaar }} kindgebonden budget.
+{%- else -%}
+U ontvangt over {{ toeslagjaar }} een toeslag.
+{%- endif %}
+
+	
+Met vriendelijke groet, 
+Belastingdienst/Toeslagen

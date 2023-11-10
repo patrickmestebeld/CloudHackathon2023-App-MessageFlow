@@ -24,17 +24,17 @@ public class MessageAssemblerShould
         {
             AanvragerKey = Guid.NewGuid(),
             KgbVariant = false,
-            Reactiedatum = "22 november 2023",
-            DatumDagtekening = "8 april 2023",
-            Toeslagjaar = "2022",
-            BerichtType = "Vraagbrief_Inkomen"
+            Reactiedatum = new DateTime(2023, 11, 22),
+            DatumDagtekening = new DateTime(2023, 04, 12),
+            Toeslagjaar = 2022,
+            BerichtType = "vraagbrief"
         };
 
         var actualMessage = await _sut.AssembleAsync(messageTrigger);
 
         actualMessage.Recipient.ShouldBe("H. de Vries");
         actualMessage.Subject.ShouldBe("We hebben uw inkomen nodig voor uw toeslag");
-        ShouldBeEqualLineForLine(actualMessage.Content, TestMessageTemplatesResources.Expected_Vraagbrief_Inkomen);
+        ShouldBeEqualLineForLine(actualMessage.Content, TestMessageTemplatesResources.expected_vraagbrief);
     }
 
     [TestMethod]
@@ -44,18 +44,37 @@ public class MessageAssemblerShould
         {
             AanvragerKey = Guid.NewGuid(),
             KgbVariant = true,
-            Reactiedatum = "22 november 2023",
-            DatumDagtekening = "19 oktober 2023",
-            DatumVraagbrief = "8 april 2023",
-            Toeslagjaar = "2022",
-            BerichtType = "Herinneringsbrief_Inkomen"
+            Reactiedatum = new DateTime(2023, 11, 22),
+            DatumDagtekening = new DateTime(2023, 10, 24),
+            Toeslagjaar = 2022,
+            BerichtType = "rappelbrief"
         };
 
         var actualMessage = await _sut.AssembleAsync(messageTrigger);
 
         actualMessage.Recipient.ShouldBe("H. de Vries");
         actualMessage.Subject.ShouldBe("We denken dat u kindgebonden budget kunt krijgen");
-        ShouldBeEqualLineForLine(actualMessage.Content, TestMessageTemplatesResources.Expected_Herinneringsbrief_Inkomen);
+        ShouldBeEqualLineForLine(actualMessage.Content, TestMessageTemplatesResources.expected_rappelbrief);
+    }
+
+    [TestMethod]
+    public async Task AssembleWhenCorrectBeschikkingTriggerIsGiven()
+    {
+        var messageTrigger = new MessageContext()
+        {
+            AanvragerKey = Guid.NewGuid(),
+            KgbVariant = true,
+            Reactiedatum = new DateTime(2023, 11, 22),
+            DatumDagtekening = new DateTime(2023, 11, 24),
+            Toeslagjaar = 2022,
+            BerichtType = "beschikking"
+        };
+
+        var actualMessage = await _sut.AssembleAsync(messageTrigger);
+
+        actualMessage.Recipient.ShouldBe("H. de Vries");
+        actualMessage.Subject.ShouldBe("U krijgt kindgebonden budget");
+        ShouldBeEqualLineForLine(actualMessage.Content, TestMessageTemplatesResources.expected_beschikking);
     }
 
     private static void ShouldBeEqualLineForLine(string actualText, string expectedText)
@@ -66,6 +85,5 @@ public class MessageAssemblerShould
         {
             actualLines[i].ShouldBe(expectedLine[i]);
         }
-
     }
 }

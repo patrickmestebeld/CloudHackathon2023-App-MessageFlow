@@ -65,14 +65,49 @@ namespace MessageFlow.UnitTests {
         ///Kantoor Utrecht
         ///Postbus 1234, 4590AA UTRECHT
         ///	
-        ///H. de Vries
-        ///Kerkstraat 1
-        ///1234AB AMSTERDAM
+        ///H. de Vries  
+        ///Kerkstraat 1  
+        ///1234AB AMSTERDAM  
         ///
-        ///Datum: 19 oktober 2023
+        ///Datum: 19 november 2023  
         ///
-        ///Uw BSN: 123456782
-        ///Kenmerk: TL041
+        ///Uw BSN: 123456782  
+        ///Kenmerk: TL153
+        ///
+        ///
+        ///### Beschikking
+        ///Onderwerp: U krijgt kindgebonden budget
+        ///
+        ///Beste H. de Vries,
+        ///
+        ///### Waarom krijgt u deze brief?
+        ///Op basis van de van u ontvangen gegevens op 10 november 2023 en 24 november 2023 is besloten uw aanvraag goed te keuren.
+        ///
+        ///### Besluit
+        ///U ontvangt over 2022 kindgebonden budget.
+        ///
+        ///	
+        ///Met vriendel [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string expected_beschikking {
+            get {
+                return ResourceManager.GetString("expected_beschikking", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Belastingdienst/Toeslagen  
+        ///Kantoor Utrecht  
+        ///Postbus 1234, 4590AA UTRECHT  
+        ///
+        ///H. de Vries  
+        ///Kerkstraat 1  
+        ///1234AB AMSTERDAM  
+        ///
+        ///Datum: 24 oktober 2023  
+        ///
+        ///Uw BSN: 123456782  
+        ///Kenmerk: TL041  
         ///
         ///
         ///### HERINNERING
@@ -81,30 +116,29 @@ namespace MessageFlow.UnitTests {
         ///Beste H. de Vries,
         ///
         ///### Waarom krijgt u deze brief?
-        ///We hebben u om uw inkomen gevraagd in onze brief van 8 april 2023. We hebben nog geen reactie van u ontvangen. Misschien bent u het vergeten? 
+        ///We hebben u om uw inkomen gevraagd in onze brief van 10 oktober 2023. We hebben nog geen reactie van u ontvangen. Misschien bent u het vergeten? 
         ///
-        ///### Waarom hebben we uw inkomen nodig?
-        ///Wi [rest of string was truncated]&quot;;.
+        ///### Waarom hebben we u [rest of string was truncated]&quot;;.
         /// </summary>
-        internal static string Expected_Herinneringsbrief_Inkomen {
+        internal static string expected_rappelbrief {
             get {
-                return ResourceManager.GetString("Expected_Herinneringsbrief_Inkomen", resourceCulture);
+                return ResourceManager.GetString("expected_rappelbrief", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Belastingdienst/Toeslagen
-        ///Kantoor Utrecht
-        ///Postbus 1234, 4590AA UTRECHT
-        ///	
-        ///H. de Vries
-        ///Kerkstraat 1
-        ///1234AB AMSTERDAM
+        ///   Looks up a localized string similar to Belastingdienst/Toeslagen  
+        ///Kantoor Utrecht  
+        ///Postbus 1234, 4590AA UTRECHT  
         ///
-        ///Datum: 8 april 2023
+        ///H. de Vries  
+        ///Kerkstraat 1  
+        ///1234AB AMSTERDAM  
         ///
-        ///Uw BSN: 123456782
-        ///Kenmerk: TL031
+        ///Datum: 12 april 2023  
+        ///
+        ///Uw BSN: 123456782  
+        ///Kenmerk: TL031  
         ///
         ///
         ///Onderwerp: We hebben uw inkomen nodig voor uw toeslag
@@ -112,64 +146,11 @@ namespace MessageFlow.UnitTests {
         ///Beste H. de Vries,
         ///
         ///### Waarom krijgt u deze brief?
-        ///U hebt toeslag over 2022 aangevraagd. We willen uw toeslag graag berekenen. Daarvoor hebben we alleen nog een schatting van uw inkomen over 2022 nodig. Wilt u dit aan ons doorgeven met Mijn toeslagen op toeslagen.n [rest of string was truncated]&quot;;.
+        ///U hebt toeslag over 2022 aangevraagd. We willen uw toeslag graag berekenen. Daarvoor hebben we alleen nog een schatting van uw inkomen over 2022 nodig. Wilt u dit aan ons doorgeven met Mijn toesla [rest of string was truncated]&quot;;.
         /// </summary>
-        internal static string Expected_Vraagbrief_Inkomen {
+        internal static string expected_vraagbrief {
             get {
-                return ResourceManager.GetString("Expected_Vraagbrief_Inkomen", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Belastingdienst/Toeslagen
-        ///Kantoor Utrecht
-        ///Postbus 1234, 4590AA UTRECHT
-        ///	
-        ///{{ aanvrager.naam.voorletters }} {{ aanvrager.naam.achternaam }}
-        ///{{ aanvrager.adres.straatnaam }} {{ aanvrager.adres.huisnummer }}
-        ///{{ aanvrager.adres.postcode }} {{ aanvrager.adres.woonplaats }}
-        ///
-        ///Datum: {{ datum_dagtekening }}
-        ///
-        ///Uw BSN: {{ aanvrager.bsn }}
-        ///Kenmerk: TL041
-        ///
-        ///
-        ///### HERINNERING
-        ///{% if kgb_variant == true -%}
-        ///Onderwerp: We denken dat u kindgebonden budget kunt krijgen
-        ///{%- else -%}
-        ///Onderwerp: We hebben uw inkom [rest of string was truncated]&quot;;.
-        /// </summary>
-        internal static string Given_Herinneringsbrief_Inkomen {
-            get {
-                return ResourceManager.GetString("Given_Herinneringsbrief_Inkomen", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Belastingdienst/Toeslagen
-        ///Kantoor Utrecht
-        ///Postbus 1234, 4590AA UTRECHT
-        ///	
-        ///{{ aanvrager.naam.voorletters }} {{ aanvrager.naam.achternaam }}
-        ///{{ aanvrager.adres.straatnaam }} {{ aanvrager.adres.huisnummer }}
-        ///{{ aanvrager.adres.postcode }} {{ aanvrager.adres.woonplaats }}
-        ///
-        ///Datum: {{ datum_dagtekening }}
-        ///
-        ///Uw BSN: {{ aanvrager.bsn }}
-        ///Kenmerk: TL031
-        ///
-        ///
-        ///{% if kgb_variant -%}
-        ///Onderwerp: We denken dat u kindgebonden budget kunt krijgen
-        ///{%- else -%}
-        ///Onderwerp: We hebben uw inkomen nodig voor uw toeslag        /// [rest of string was truncated]&quot;;.
-        /// </summary>
-        internal static string Given_Vraagbrief_Inkomen {
-            get {
-                return ResourceManager.GetString("Given_Vraagbrief_Inkomen", resourceCulture);
+                return ResourceManager.GetString("expected_vraagbrief", resourceCulture);
             }
         }
     }

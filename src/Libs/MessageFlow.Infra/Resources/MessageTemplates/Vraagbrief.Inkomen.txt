@@ -6,7 +6,7 @@ Postbus 1234, 4590AA UTRECHT
 {{ aanvrager.adres.straatnaam }} {{ aanvrager.adres.huisnummer }}  
 {{ aanvrager.adres.postcode }} {{ aanvrager.adres.woonplaats }}  
 
-Datum: {{ datum_dagtekening }}  
+Datum: {{ datum_dagtekening | date.to_string '%e %B %Y' 'nl-NL' }}  
 
 Uw BSN: {{ aanvrager.bsn }}  
 Kenmerk: TL031  
@@ -30,7 +30,7 @@ U hebt toeslag over {{ toeslagjaar }} aangevraagd. We willen uw toeslag graag be
 {%- endif %}
 
 ### Let op!
-Het is belangrijk dat wij uw inkomen vóór {{ reactiedatum }} hebben. We kunnen anders uw toeslag niet berekenen. In dat geval kunt u nu helaas geen toeslag krijgen.
+Het is belangrijk dat wij uw inkomen vóór {{ reactiedatum | date.to_string '%e %B %Y' 'nl-NL' }} hebben. We kunnen anders uw toeslag niet berekenen. In dat geval kunt u nu helaas geen toeslag krijgen.
 
 ### Hoe geeft u uw inkomen door?
 Volg daarvoor alle stappen hieronder. Ook als u verwacht dat u in {{ toeslagjaar }} geen inkomen hebt.

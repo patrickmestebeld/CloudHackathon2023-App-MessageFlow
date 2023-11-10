@@ -1,6 +1,4 @@
-param name string
 param location string = resourceGroup().location
-param containerName string
 @allowed([
   '2a2b9908-6ea1-4ae2-8e65-a410df84e7d1' // Storage Blob Data Reader
   'ba92f5b4-2d11-453d-a403-e96b0029c9fe' // Storage Blob Data Contributor
@@ -8,10 +6,9 @@ param containerName string
 ])
 param roleId string
 param msEntraUserObjectId string
-param appServiceManagedIdentityId string = ''
 
 resource storageAccount 'Microsoft.Storage/storageAccounts@2022-09-01' = {
-  name: name
+  name: 'stg${uniqueString(resourceGroup().name)}'
   location: location
   kind: 'StorageV2'
   sku: {
@@ -26,10 +23,8 @@ resource storageAccount 'Microsoft.Storage/storageAccounts@2022-09-01' = {
 }
 
 resource container 'Microsoft.Storage/storageAccounts/blobServices/containers@2022-09-01' = {
-  name: '${name}/default/${containerName}'
-  dependsOn: [
-    storageAccount
-  ]
+#disable-next-line use-parent-property
+  name: '${storageAccount.name}/default/messages'
   properties: {
     publicAccess: 'Blob'
   }

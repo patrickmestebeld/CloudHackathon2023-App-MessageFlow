@@ -6,7 +6,7 @@ Postbus 1234, 4590AA UTRECHT
 {{ aanvrager.adres.straatnaam }} {{ aanvrager.adres.huisnummer }}  
 {{ aanvrager.adres.postcode }} {{ aanvrager.adres.woonplaats }}  
 
-Datum: {{ datum_dagtekening }}  
+Datum: {{ datum_dagtekening | date.to_string '%e %B %Y' 'nl-NL' }}  
 
 Uw BSN: {{ aanvrager.bsn }}  
 Kenmerk: TL041  
@@ -22,7 +22,7 @@ Onderwerp: We hebben uw inkomen nodig voor uw toeslag
 Beste {{ aanvrager.naam.voorletters }} {{ aanvrager.naam.achternaam }},
 
 ### Waarom krijgt u deze brief?
-We hebben u om uw inkomen gevraagd in onze brief van {{ datum_vraagbrief }}. We hebben nog geen reactie van u ontvangen. Misschien bent u het vergeten? 
+We hebben u om uw inkomen gevraagd in onze brief van {{ datum_vraagbrief | date.to_string '%e %B %Y' 'nl-NL' }}. We hebben nog geen reactie van u ontvangen. Misschien bent u het vergeten? 
 
 ### Waarom hebben we uw inkomen nodig?
 {% if kgb_variant -%}

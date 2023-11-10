@@ -1,4 +1,5 @@
 . .\PsFunctions\ReadEnvVariables.ps1
+$resourceGroupName = "rg-$env:BASE_NAME-$env:ENVIRONMENT"
 
 # Delete the resource group
-az group delete --name $env:RESOURCE_GROUP_NAME --yes
+az group delete --name $resourceGroupName --yes

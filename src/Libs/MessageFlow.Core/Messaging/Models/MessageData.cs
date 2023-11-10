@@ -6,10 +6,11 @@ namespace MessageFlow.Core.Messaging.Models
     {
         public PersonalData? Aanvrager { get; init; }
         public bool KgbVariant { get; init; } = false;
-        public string DatumDagtekening { get; init; } = "";
-        public string DatumVraagbrief { get; init; } = "";
-        public string Reactiedatum { get; init; } = "";
-        public string Toeslagjaar { get; init; } = "";
+        public DateTime DatumDagtekening { get; init; } = default;
+        public DateTime DatumVraagbrief => DatumDagtekening.AddDays(-14);
+        public DateTime DatumRappelbrief => DatumDagtekening.AddDays(-28);
+        public DateTime Reactiedatum { get; init; } = default;
+        public int Toeslagjaar { get; init; } = default;
     }
 }
 

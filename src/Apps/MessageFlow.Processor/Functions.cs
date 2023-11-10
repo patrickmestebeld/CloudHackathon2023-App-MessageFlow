@@ -18,7 +18,7 @@ namespace MessageFlow.Jobs
         }
 
         public async Task ProcessServicebus(
-            [ServiceBusTrigger("messages", Connection = "ServiceBusConnection")] string message, string messageId,
+            [ServiceBusTrigger("sbq-msgt02-dev-001", Connection = "ServiceBusConnection")] string message, string messageId,
             [Blob("messages/{messageId}.md", FileAccess.Write, Connection = "BlobConnection")] Stream outputBlob, ILogger logger)
         {
             logger.LogInformation($"ServiceBus message: {message}");

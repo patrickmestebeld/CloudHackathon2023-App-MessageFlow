@@ -43,13 +43,17 @@
 	</ItemGroup>
 	
 	<ItemGroup>
+		<EmbeddedResource Include="Resources\MessageTemplates\Beschikking.Inkomen.txt">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</EmbeddedResource>
 		<EmbeddedResource Include="Resources\MessageTemplates\Herinneringsbrief.Inkomen.txt">
-		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</EmbeddedResource>
 		<EmbeddedResource Include="Resources\MessageTemplates\Vraagbrief.Inkomen.txt">
-		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</EmbeddedResource>
 		<None Remove="Resources\Herinneringsbrief.Inkomen.txt" />
+		<None Remove="Resources\MessageTemplates\Beschikking.Inkomen.txt" />
 		<None Remove="Resources\Vraagbrief.Inkomen.txt" />
 	</ItemGroup>
 	

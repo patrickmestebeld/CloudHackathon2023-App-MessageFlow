@@ -1,11 +1,13 @@
 param baseName string = resourceGroup().name
-param env string = 'dev'
+param environment string = 'dev'
+param instanceNumber int = 1
 param appSettings object = {}
 param location string = resourceGroup().location
+
 var baseNameLower = toLower(baseName)
 
 resource appServicePlan 'Microsoft.Web/serverfarms@2022-03-01' = {
-  name: 'asp-${baseNameLower}-${env}-001'
+  name: format('asp-{0}-{1}-{2:D3}', baseNameLower, environment, instanceNumber)
   location: location
   sku: {
     name: 'S1' // @allowed([ 'F1', 'D1', 'B1', 'B2', 'B3', 'S1', 'S2', 'S3', 'P1', 'P2', 'P3', 'P4' ])
@@ -13,7 +15,7 @@ resource appServicePlan 'Microsoft.Web/serverfarms@2022-03-01' = {
 }
  
 resource appService 'Microsoft.Web/sites@2022-03-01' = {
-  name: 'app-${baseNameLower}-${env}-001'
+  name: format('app-{0}-{1}-{2:D3}', baseNameLower, environment, instanceNumber)
   location: location
   identity: {
     type: 'SystemAssigned'
@@ -41,7 +43,7 @@ resource siteconfig 'Microsoft.Web/sites/config@2022-03-01' = {
 }
  
 resource appInsights 'Microsoft.Insights/components@2020-02-02' = {
-  name: 'app-${baseNameLower}-${env}-001'
+  name: format('appi-{0}-{1}-{2:D3}', baseNameLower, environment, instanceNumber)
   location: location
   kind: 'web'
   properties: {

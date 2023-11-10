@@ -1,7 +1,5 @@
-@minLength(3)
-@maxLength(24)
-param keyVaultName string
 param location string = resourceGroup().location
+@minLength(3)
 param tenantId string = subscription().tenantId
 param objectId string
 param secrets secretType[] = []
@@ -13,7 +11,7 @@ type secretType = {
 }
 
 resource keyVault 'Microsoft.KeyVault/vaults@2021-11-01-preview' = {
-  name: keyVaultName
+  name: 'kv${uniqueString(resourceGroup().name)}'
   location: location
   properties: {
     enabledForDeployment: false

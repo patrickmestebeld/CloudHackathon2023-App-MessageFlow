@@ -13,7 +13,6 @@ namespace MessageFlow.Api.Factories
                 Aanvrager = persoonsGegevens,
                 KgbVariant = trigger.KgbVariant,
                 DatumDagtekening = trigger.DatumDagtekening,
-                DatumVraagbrief = trigger.DatumVraagbrief,
                 Reactiedatum = trigger.Reactiedatum,
                 Toeslagjaar = trigger.Toeslagjaar,
             };
