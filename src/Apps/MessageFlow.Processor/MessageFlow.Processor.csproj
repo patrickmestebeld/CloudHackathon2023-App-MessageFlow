@@ -19,10 +19,10 @@
     <ProjectReference Include="..\..\Libs\MessageFlow.Infra\MessageFlow.Infra.csproj" />
   </ItemGroup>
   <ItemGroup>
-    <None Update="appsettings.template.json">
+    <None Update="appsettings.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="appsettings.json">
+    <None Update="appsettings.template.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="Settings.job">
