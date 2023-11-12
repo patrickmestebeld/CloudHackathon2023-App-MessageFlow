@@ -1,4 +1,5 @@
 param location string = resourceGroup().location
+param environment string = 'dev'
 @minLength(3)
 param tenantId string = subscription().tenantId
 param objectId string
@@ -11,7 +12,7 @@ type secretType = {
 }
 
 resource keyVault 'Microsoft.KeyVault/vaults@2021-11-01-preview' = {
-  name: 'kv${uniqueString(resourceGroup().name)}'
+  name: 'kvmsg${environment}-${uniqueString(resourceGroup().name)}'
   location: location
   properties: {
     enabledForDeployment: false

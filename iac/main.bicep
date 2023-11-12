@@ -11,6 +11,7 @@ module kvMessagingFlow './Modules/keyvault.bicep' = {
   name: 'kvMessagingFlow'
   params: {
     location: location
+    environment: environment
     objectId: msEntraUserObjectId
   }
 }
@@ -24,6 +25,10 @@ module stMessagingFlow './Modules/blobStorage.bicep' = {
   }
 }
 
+resource existingApim 'Microsoft.ApiManagement/service@2021-08-01' existing = {
+  name: format('apim-{0}-{1}-{2:D3}', baseName, environment, 1)
+}
+
 module appMessagingFlow './Modules/webJob.bicep' = {
   name: 'messageflow'
   dependsOn: [ kvMessagingFlow, stMessagingFlow ]
@@ -34,9 +39,9 @@ module appMessagingFlow './Modules/webJob.bicep' = {
     appSettings: {
       ServiceBusConnection__fullyQualifiedNamespace: '${existingMessagingServiceBusName}.servicebus.windows.net'
       BlobConnection__serviceUri: stMessagingFlow.outputs.storageEndpointBlob
-      PersonalDataFetcher_ClientBaseUrl: 'https://cloudhackathon2023-apim.azure-api.net/messageoracle'
+      PersonalDataFetcher_ClientBaseUrl: '${existingApim.properties.gatewayUrl}/oracle'
       PersonalDataFetcher_ClientSubscriptionKey: '@Microsoft.KeyVault(VaultName=${kvMessagingFlow.outputs.keyVaultName};Secret=OcpApimSubscriptionKey)'
-      MessageInbox_ClientBaseUrl: 'https://apim-msgt02-dev-001.azure-api.net/msgT02inbox'
+      MessageInbox_ClientBaseUrl: '${existingApim.properties.gatewayUrl}/inbox'
       FunctionsOptions_BlobConnectionString: stMessagingFlow.outputs.storageEndpointBlob
     }
   }
