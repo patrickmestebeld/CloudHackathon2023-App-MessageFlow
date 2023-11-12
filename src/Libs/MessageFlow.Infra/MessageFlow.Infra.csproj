@@ -61,6 +61,13 @@
 	  <OpenApiReference Include="OpenAPIs\swagger.json" CodeGenerator="NSwagCSharp" Namespace="MessageOracle" ClassName="MessageOracleClient">
 	    <SourceUri>https://messageoracle.azurewebsites.net/swagger/v1/swagger.json</SourceUri>
 	  </OpenApiReference>
+	  <OpenApiReference Include="OpenAPIs\swagger2.json" CodeGenerator="NSwagCSharp" Namespace="MessagingInbox" ClassName="MessagingInboxClient">
+	    <SourceUri>https://app-msgt02inbox-prd-001.azurewebsites.net/swagger/v1/swagger.json</SourceUri>
+	  </OpenApiReference>
+	</ItemGroup>
+	
+	<ItemGroup>
+	  <None Update="OpenAPIs\swagger1.json" ClassName="MessagingInboxClient" />
 	</ItemGroup>
 
 

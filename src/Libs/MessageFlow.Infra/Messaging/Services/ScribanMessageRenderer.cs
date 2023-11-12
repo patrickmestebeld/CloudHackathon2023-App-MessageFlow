@@ -21,14 +21,15 @@ namespace MessageFlow.Infra.Messaging.Services
             var temp = MessageTemplatesResources.ResourceManager.GetString(renderable.TemplateName);
             var template = Template.ParseLiquid(temp);
             var result = template.Render(renderable.TemplateData);
-            var recipient = renderable.TemplateData.Aanvrager!.Naam.ToString()!;
+            var recipientName = renderable.TemplateData.Aanvrager!.Naam.ToString()!;
+            var recipientKey = renderable.TemplateData.Aanvrager!.Key;
 
             if (TryExtractSubject(result, out var subject))
             {
-                return new Message(recipient, subject, result);
+                return new Message(recipientKey, recipientName, renderable.TemplateName, subject, result);
             }
 
-            return new Message(recipient, "", result);
+            return new Message(recipientKey, recipientName, renderable.TemplateName, "", result);
         }
 
         private static void ValidateTemplateName(IEnumerable? entries, string key)

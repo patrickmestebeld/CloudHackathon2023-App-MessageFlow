@@ -32,7 +32,9 @@ public class MessageAssemblerShould
 
         var actualMessage = await _sut.AssembleAsync(messageTrigger);
 
+        actualMessage.RecipientId.ShouldBe(messageTrigger.AanvragerKey);
         actualMessage.Recipient.ShouldBe("H. de Vries");
+        actualMessage.MessageType.ShouldBe(messageTrigger.BerichtType);
         actualMessage.Subject.ShouldBe("We hebben uw inkomen nodig voor uw toeslag");
         ShouldBeEqualLineForLine(actualMessage.Content, TestMessageTemplatesResources.expected_vraagbrief);
     }
@@ -52,7 +54,9 @@ public class MessageAssemblerShould
 
         var actualMessage = await _sut.AssembleAsync(messageTrigger);
 
+        actualMessage.RecipientId.ShouldBe(messageTrigger.AanvragerKey);
         actualMessage.Recipient.ShouldBe("H. de Vries");
+        actualMessage.MessageType.ShouldBe(messageTrigger.BerichtType);
         actualMessage.Subject.ShouldBe("We denken dat u kindgebonden budget kunt krijgen");
         ShouldBeEqualLineForLine(actualMessage.Content, TestMessageTemplatesResources.expected_rappelbrief);
     }
@@ -72,7 +76,9 @@ public class MessageAssemblerShould
 
         var actualMessage = await _sut.AssembleAsync(messageTrigger);
 
+        actualMessage.RecipientId.ShouldBe(messageTrigger.AanvragerKey);
         actualMessage.Recipient.ShouldBe("H. de Vries");
+        actualMessage.MessageType.ShouldBe(messageTrigger.BerichtType);
         actualMessage.Subject.ShouldBe("U krijgt kindgebonden budget");
         ShouldBeEqualLineForLine(actualMessage.Content, TestMessageTemplatesResources.expected_beschikking);
     }
